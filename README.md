@@ -9,6 +9,11 @@ This project gives you a **local audio-to-text workflow** with:
 - Good handling for long recordings using `faster-whisper` streaming segments + VAD.
 - English/French automatic language detection.
 
+
+## Git workflow
+
+See [BRANCHING.md](BRANCHING.md) for the recommended branch naming and release workflow for this project.
+
 ---
 
 ## Why this setup matches your machine

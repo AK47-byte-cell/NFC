@@ -1,43 +1,28 @@
 # Offline Deposition Transcriber Build Instructions
 
-This guide packages a standalone, fully offline transcription tool for legal proceedings and depositions.
-
-## Phase 1: Environment Setup & Dependencies
-
-Run on a Windows machine with Python 3 in PATH and internet access for initial setup.
-
-1. `py -m pip install --upgrade pip`
-2. `py -m pip install faster-whisper pyinstaller`
-3. Create a staging directory: `C:\TranscriptionSetup\`
-4. Copy `DownloadModel.py` and `AudioTranscriber.py` into `C:\TranscriptionSetup\`
-
-## Phase 2: Download the Local Model
-
-1. Open Command Prompt in `C:\TranscriptionSetup\`
-2. Run `py DownloadModel.py`
-3. Confirm a `models` folder is created and populated
-
-## Phase 3: Build the Standalone Executable
-
-From `C:\TranscriptionSetup\` run:
+If you want it to just build the `.exe`, run one command from this folder:
 
 ```bat
-pyinstaller --noconsole --collect-all faster_whisper --collect-all ctranslate2 AudioTranscriber.py
+make_exe.bat
 ```
 
-Then:
+This will:
 
-1. Open `dist\AudioTranscriber\`
-2. Move/copy `models` into `dist\AudioTranscriber\` so it sits beside `AudioTranscriber.exe`
+1. Install required packages (`faster-whisper`, `pyinstaller`)
+2. Download the local `large-v3` model (if not already present)
+3. Build `AudioTranscriber.exe`
+4. Copy `models` next to the `.exe` inside `dist\AudioTranscriber`
 
-## Phase 4: Final Deployment
+## Files
 
-1. Move `dist\AudioTranscriber\` to `C:\Program Files\` (or approved local app directory)
-2. Create a Desktop shortcut for `AudioTranscriber.exe`
-3. Remove `C:\TranscriptionSetup\` when finished
+- `AudioTranscriber.py`: offline GUI transcription app
+- `BuildStandaloneExe.py`: one-shot Python build script
+- `make_exe.bat`: Windows launcher script for setup + build
 
-## Security Notes
+## Output
 
-- Runtime is fully local and does not require cloud APIs
-- Model inference is pinned to CPU (`compute_type="int8"`) for stability on Lenovo Yoga 9i-class hardware
-- No external data transmission is required after packaging
+Final standalone app folder:
+
+`dist\AudioTranscriber`
+
+Move that folder to your approved local install location and create a desktop shortcut to `AudioTranscriber.exe`.

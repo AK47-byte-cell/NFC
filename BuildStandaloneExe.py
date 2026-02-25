@@ -37,6 +37,8 @@ def build_exe():
             "faster_whisper",
             "--collect-all",
             "ctranslate2",
+            "--collect-all",
+            "tkinterdnd2",
             "AudioTranscriber.py",
         ]
     )

@@ -4,7 +4,7 @@ setlocal
 cd /d %~dp0
 
 py -m pip install --upgrade pip
-py -m pip install faster-whisper pyinstaller
+py -m pip install faster-whisper pyinstaller tkinterdnd2
 py BuildStandaloneExe.py
 
 if %ERRORLEVEL% neq 0 (
